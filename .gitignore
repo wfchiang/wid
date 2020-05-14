@@ -1,0 +1,7 @@
+/.idea
+/target
+*.iml
+
+!pom.xml
+!*.java
+!README.md
