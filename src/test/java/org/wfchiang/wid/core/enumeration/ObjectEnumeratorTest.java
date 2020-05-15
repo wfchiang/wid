@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.wfchiang.wid.core.model.EnumerationContext;
 import org.wfchiang.wid.core.model.ExampleHistory;
 
+import java.util.Set;
+
 public class ObjectEnumeratorTest {
 
     ExampleHistory exampleHistory;
@@ -31,14 +33,23 @@ public class ObjectEnumeratorTest {
 
         ObjectEnumerator objectEnumerator = new ObjectEnumerator();
 
+        Set<Object> enuObjectSet;
         Object enuObject;
 
-        enuObject = objectEnumerator.enumerate(stringExample0, this.enumerationContext);
+        enuObjectSet = objectEnumerator.enumerate(stringExample0, this.enumerationContext);
+        Assert.assertNotNull(enuObjectSet);
+        Assert.assertEquals(1, enuObjectSet.size());
+
+        enuObject = enuObjectSet.iterator().next();
         Assert.assertNotNull(enuObject);
         Assert.assertTrue(enuObject instanceof String);
         Assert.assertEquals("value0", (String)enuObject);
 
-        enuObject = objectEnumerator.enumerate(objectExample, this.enumerationContext);
+        enuObjectSet = objectEnumerator.enumerate(objectExample, this.enumerationContext);
+        Assert.assertNotNull(enuObjectSet);
+        Assert.assertEquals(1, enuObjectSet.size());
+
+        enuObject = enuObjectSet.iterator().next();
         Assert.assertNotNull(enuObject);
         Assert.assertTrue(enuObject instanceof JSONObject);
 

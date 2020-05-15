@@ -4,28 +4,36 @@ import io.swagger.oas.inflector.examples.models.Example;
 import io.swagger.oas.inflector.examples.models.ObjectExample;
 import io.swagger.oas.inflector.examples.models.StringExample;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.model.EnumerationContext;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class ObjectEnumerator implements Enumerator {
 
     private StringEnumerator stringEnumerator = new StringEnumerator();
 
     @Override
-    public Object enumerate(Example example, EnumerationContext enumerationContext) {
+    public Set<Object> enumerate(Example example, EnumerationContext enumerationContext) {
         if (example instanceof ObjectExample) {
             ObjectExample objectExample = (ObjectExample) example;
             JSONObject jsonObject = new JSONObject();
             Map<String, Example> values = objectExample.getValues();
 
             for (String key : values.keySet()) {
-                jsonObject.put(key, this.enumerate(values.get(key), enumerationContext));
+                Set<Object> objectSet = this.enumerate(values.get(key), enumerationContext);
+                if (objectSet.size() > 0) {
+                    jsonObject.put(key, objectSet.iterator().next());
+                }
             }
 
-            return jsonObject;
+            Set<Object> objectSet = new HashSet<>();
+            objectSet.add(jsonObject);
+
+            return objectSet;
         }
         else if (example instanceof StringExample) {
             return this.stringEnumerator.enumerate(example, enumerationContext);

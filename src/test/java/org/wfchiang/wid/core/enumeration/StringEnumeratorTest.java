@@ -9,6 +9,8 @@ import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.model.EnumerationContext;
 import org.wfchiang.wid.core.model.ExampleHistory;
 
+import java.util.Set;
+
 public class StringEnumeratorTest {
 
     ExampleHistory exampleHistory;
@@ -26,7 +28,11 @@ public class StringEnumeratorTest {
         stringExample.setValue("123");
 
         StringEnumerator stringEnumerator = new StringEnumerator();
-        Object enuObject = stringEnumerator.enumerate(stringExample, this.enumerationContext);
+        Set<Object> enuObjectSet = stringEnumerator.enumerate(stringExample, this.enumerationContext);
+        Assert.assertNotNull(enuObjectSet);
+        Assert.assertEquals(1, enuObjectSet.size());
+
+        Object enuObject = enuObjectSet.iterator().next();
         Assert.assertNotNull(enuObject);
         Assert.assertTrue(enuObject instanceof String);
 
@@ -38,6 +44,6 @@ public class StringEnumeratorTest {
     public void enumerate_e0 () {
         DoubleExample doubleExample = new DoubleExample(1.23);
         StringEnumerator stringEnumerator = new StringEnumerator();
-        Object enuObject = stringEnumerator.enumerate(doubleExample, this.enumerationContext);
+        stringEnumerator.enumerate(doubleExample, this.enumerationContext);
     }
 }
