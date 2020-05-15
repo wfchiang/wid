@@ -1,4 +1,4 @@
-package org.wfchiang.util;
+package org.wfchiang.wid.core.util;
 
 import com.google.common.io.CharStreams;
 import org.springframework.core.io.ClassPathResource;

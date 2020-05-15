@@ -31,9 +31,10 @@ components:
         strKey0:
           type: string
           description: Sample string entry
-          maxLength: 10
+          maxLength: 3
         strKey1:
           type: string
           description: Sample string entry without maxLength specified
+          example: strValue1
       required:
       - strKey0

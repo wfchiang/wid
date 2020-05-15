@@ -1,4 +1,4 @@
-package org.wfchiang;
+package org.wfchiang.wid.core;
 
 import static org.junit.Assert.assertTrue;
 
