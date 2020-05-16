@@ -1,7 +1,5 @@
 package org.wfchiang.wid.core.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.oas.inflector.examples.models.Example;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -72,28 +70,5 @@ public class WidOpenAPIUtilsTest {
         StringSchema stringSchema1 = this.getStringSchemaFromDefinitions("strKey1", schema0Properties);
         Assert.assertNull(stringSchema1.getMaxLength());
         Assert.assertNotNull(stringSchema1.getExample());
-    }
-
-    @Test
-    public void createJsonExampleFromSchema_0 () throws IOException, JSONException {
-        OpenAPI openAPI = this.getOpenAPIFromClassPath("examples/ex0.yml");
-
-        Map<String, Schema> componentSchemas = this.getComponentSchemasFromOpenAPI(openAPI);
-
-        ObjectSchema objectSchema0 = this.getObjectSchemaFromDefinitions("Object0", componentSchemas);
-
-        Example example0 = WidOpenAPIUtils.createJsonExampleFromSchema(objectSchema0, componentSchemas);
-        Assert.assertNotNull(example0);
-
-        String exampleString0 = WidOpenAPIUtils.createJsonExampleStringFromSchema(objectSchema0, componentSchemas);
-        Assert.assertNotNull(exampleString0);
-
-        Object object0 = WidOpenAPIUtils.extractExample(example0);
-        Assert.assertNotNull(object0);
-        Assert.assertNotNull(object0 instanceof JSONObject);
-
-        JSONObject jsonObject0 = (JSONObject) object0;
-        Assert.assertTrue(jsonObject0.has("strKey1"));
-        Assert.assertEquals("strValue1", jsonObject0.get("strKey1"));
     }
 }
