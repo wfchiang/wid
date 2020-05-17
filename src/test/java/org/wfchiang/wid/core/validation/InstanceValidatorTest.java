@@ -1,6 +1,5 @@
-package org.wfchiang.wid.core;
+package org.wfchiang.wid.core.validation;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -9,12 +8,10 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wfchiang.wid.core.TestingUtils;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import org.wfchiang.wid.core.enumeration.EnumerationHistory;
 import org.wfchiang.wid.core.exception.WidValidationException;
-import org.wfchiang.wid.core.validation.InstanceValidator;
-import org.wfchiang.wid.core.validation.ValidationResult;
-import org.wfchiang.wid.core.validation.ValidationStatus;
 
 import java.io.IOException;
 import java.util.Map;
