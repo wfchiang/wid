@@ -4,9 +4,6 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
-import org.wfchiang.wid.core.model.EnumerationContext;
-import org.wfchiang.wid.core.model.EnumerationHistory;
 
 import java.util.Set;
 

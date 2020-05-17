@@ -2,7 +2,7 @@ package org.wfchiang.wid.core.exception;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.wfchiang.wid.core.model.EnumerationHistory;
+import org.wfchiang.wid.core.enumeration.EnumerationHistory;
 
 public class EnumerationHistoryTest {
 

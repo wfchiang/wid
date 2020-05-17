@@ -1,13 +1,9 @@
-package org.wfchiang.wid.core.model;
+package org.wfchiang.wid.core.enumeration;
 
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.json.JSONObject;
-import org.wfchiang.wid.core.enumeration.DefaultObjectEnumerator;
-import org.wfchiang.wid.core.enumeration.DefaultStringEnumerator;
-import org.wfchiang.wid.core.enumeration.ObjectEnumerator;
-import org.wfchiang.wid.core.enumeration.StringEnumerator;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 
 import java.util.HashSet;

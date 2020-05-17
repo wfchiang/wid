@@ -3,7 +3,6 @@ package org.wfchiang.wid.core.enumeration;
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import org.json.JSONObject;
-import org.wfchiang.wid.core.model.EnumerationContext;
 
 import java.util.HashSet;
 import java.util.Map;

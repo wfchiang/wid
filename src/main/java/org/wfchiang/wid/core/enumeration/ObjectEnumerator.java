@@ -2,7 +2,6 @@ package org.wfchiang.wid.core.enumeration;
 
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import org.json.JSONObject;
-import org.wfchiang.wid.core.model.EnumerationContext;
 
 import java.util.Set;
 

@@ -9,8 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.wfchiang.wid.core.TestingUtils;
-import org.wfchiang.wid.core.model.EnumerationContext;
-import org.wfchiang.wid.core.model.EnumerationHistory;
 
 import java.io.IOException;
 import java.util.HashMap;

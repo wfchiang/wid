@@ -1,4 +1,4 @@
-package org.wfchiang.wid.core.model;
+package org.wfchiang.wid.core.enumeration;
 
 import java.util.HashSet;
 import java.util.Set;

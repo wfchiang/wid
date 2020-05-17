@@ -1,7 +1,6 @@
 package org.wfchiang.wid.core.enumeration;
 
 import io.swagger.v3.oas.models.media.StringSchema;
-import org.wfchiang.wid.core.model.EnumerationContext;
 
 import java.util.HashSet;
 import java.util.Set;
