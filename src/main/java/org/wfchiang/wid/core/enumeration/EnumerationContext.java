@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.json.JSONObject;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
+import org.wfchiang.wid.core.util.WidShortHands;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -40,8 +41,7 @@ public class EnumerationContext {
             }
         }
         else {
-            String className = (schema == null ? "(null)" : schema.getClass().getName());
-            throw new WidUnsupportedClassException("Unsupported schema class: " + className);
+            throw new WidUnsupportedClassException("Unsupported schema class: " + WidShortHands.getClassName(schema));
         }
 
         return enuObjects;
