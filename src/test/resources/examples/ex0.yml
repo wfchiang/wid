@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Sample API
+  description: Test API 0 for WID
+paths:
+  /ping:
+    get:
+      description: A ping endpoint
+      responses:
+        '200':
+          description: Successful response
+  /post0:
+    post:
+      description: Sample post endpoint 0
+      parameters:
+      - name: payload
+        in: body
+        description: Request body
+        schema:
+          $ref: '#/components/Object0'
+      responses:
+        '200':
+          description: Successful response
+          $ref: '#/components/Object0'
+components:
+  schemas:
+    Object0:
+      type: object
+      properties:
+        strKey0:
+          type: string
+          description: Sample string entry
+          maxLength: 3
+        strKey1:
+          type: string
+          description: Sample string entry without maxLength specified
+          example: strValue1
+      required:
+      - strKey0
