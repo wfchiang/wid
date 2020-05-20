@@ -5,13 +5,14 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DefaultCharRangedLengthStringEnumerator implements StringEnumerator {
+public class DefaultRangedLengthStringEnumerator implements StringEnumerator {
 
-    private String defaultChar = " ";
+    private DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator;
     private int minLength = 0;
     private int maxLength = 1;
 
-    public DefaultCharRangedLengthStringEnumerator (String defaultChar, int minLength, int maxLength) {
+    public DefaultRangedLengthStringEnumerator(String defaultChar, int minLength, int maxLength) {
+        this.defaultFixedLengthStringEnumerator = new DefaultFixedLengthStringEnumerator(0);
         this.setDefaultChar(defaultChar);
         this.setMaxLength(maxLength);
         this.setMinLength(minLength);
@@ -20,25 +21,20 @@ public class DefaultCharRangedLengthStringEnumerator implements StringEnumerator
     @Override
     public Set<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
         Set<String> enuSet = new HashSet<>();
-        String enuString = "";
-        for (int i = 0 ; i < maxLength ; i++) {
-            if ((minLength <= i) && (i < maxLength)) {
-                enuSet.add(new String(enuString));
-            }
-            enuString = enuString + this.defaultChar;
+        for (int i = this.minLength ; i < this.maxLength ; i++) {
+            this.defaultFixedLengthStringEnumerator.setStringLength(i);
+            Set<String> newSet = this.defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
+            enuSet.addAll(newSet);
         }
         return enuSet;
     }
 
     public String getDefaultChar() {
-        return defaultChar;
+        return this.defaultFixedLengthStringEnumerator.getDefaultChar();
     }
 
     public void setDefaultChar(String defaultChar) {
-        if (defaultChar == null || defaultChar.length() != 1) {
-            throw new IllegalArgumentException("Invalid defaultChar: " + defaultChar);
-        }
-        this.defaultChar = defaultChar;
+        this.defaultFixedLengthStringEnumerator.setDefaultChar(defaultChar);
     }
 
     public int getMinLength() {
