@@ -75,12 +75,14 @@ public class DefaultObjectEnumeratorTest {
     @Test
     public void enumerate_3 () throws IOException, JSONException {
         OpenAPI openAPI = TestingUtils.getOpenAPIFromClassPath("examples/ex0.yml");
-
         Map<String, Schema> componentSchemas = TestingUtils.getComponentSchemasFromOpenAPI(openAPI);
-
         ObjectSchema objectSchema1 = TestingUtils.getObjectSchemaFromDefinitions("Object1", componentSchemas);
 
         EnumerationContext enumerationContext = new EnumerationContext(openAPI);
+        DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator
+                = new DefaultFixedLengthStringEnumerator(2, "J");
+        enumerationContext.setStringEnumerator(defaultFixedLengthStringEnumerator);
+
         Set<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema1, enumerationContext);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(1, enuObjects.size());
@@ -91,15 +93,15 @@ public class DefaultObjectEnumeratorTest {
 
         Assert.assertNotNull(enuJSON);
         Assert.assertTrue(enuJSON.has("strKey0"));
-        Assert.assertEquals("", ((String)enuJSON.get("strKey0")));
+        Assert.assertEquals("JJ", ((String)enuJSON.get("strKey0")));
         Assert.assertTrue(enuJSON.has("objKey0"));
         Assert.assertTrue(enuJSON.get("objKey0") instanceof JSONObject);
         Assert.assertTrue(((JSONObject)enuJSON.get("objKey0")).has("strKey00"));
-        Assert.assertEquals("", ((JSONObject)((JSONObject)enuJSON.get("objKey0"))).get("strKey00"));
+        Assert.assertEquals("JJ", ((JSONObject)((JSONObject)enuJSON.get("objKey0"))).get("strKey00"));
         Assert.assertTrue(enuJSON.has("objKey1"));
         Assert.assertTrue(enuJSON.get("objKey1") instanceof JSONObject);
         Assert.assertTrue(((JSONObject)enuJSON.get("objKey1")).has("strKey0"));
-        Assert.assertEquals("", ((JSONObject)((JSONObject)enuJSON.get("objKey1"))).get("strKey1"));
+        Assert.assertEquals("JJ", ((JSONObject)((JSONObject)enuJSON.get("objKey1"))).get("strKey1"));
     }
 
     @Test(expected = IllegalArgumentException.class)

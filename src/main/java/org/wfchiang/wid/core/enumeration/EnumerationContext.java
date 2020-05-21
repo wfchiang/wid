@@ -73,4 +73,36 @@ public class EnumerationContext {
 
         return enuObjects;
     }
+
+    public OpenAPI getOpenAPI() {
+        return openAPI;
+    }
+
+    public ResolverFully getResolverFully() {
+        return resolverFully;
+    }
+
+    public StringEnumerator getStringEnumerator() {
+        return stringEnumerator;
+    }
+
+    public void setStringEnumerator(StringEnumerator stringEnumerator) {
+        this.stringEnumerator = stringEnumerator;
+    }
+
+    public ObjectEnumerator getObjectEnumerator() {
+        return objectEnumerator;
+    }
+
+    public void setObjectEnumerator(ObjectEnumerator objectEnumerator) {
+        this.objectEnumerator = objectEnumerator;
+    }
+
+    public EnumerationHistory getEnumerationHistory() {
+        return enumerationHistory;
+    }
+
+    public void setEnumerationHistory(EnumerationHistory enumerationHistory) {
+        this.enumerationHistory = enumerationHistory;
+    }
 }
