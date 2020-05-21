@@ -7,17 +7,37 @@ import java.util.*;
 
 public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
 
-    private List<String> charList = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private int stringLength = 0;
+    private final List<String> defaultCharList = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    private final List<String> charList;
+    private final int stringLength;
     private String prevInstance = null;
 
     public DictionaryFixedLengthStringEnumerator (int stringLength) {
-        this.setStringLength(stringLength);
+        // Set stringLength
+        if (stringLength < 0) {
+            throw new IllegalArgumentException("Invalid stringLength: " + stringLength);
+        }
+        this.stringLength = stringLength;
+
+        // Set charList
+        this.charList = this.defaultCharList;
     }
 
     public DictionaryFixedLengthStringEnumerator (int stringLength, List<String> charList) {
-        this(stringLength);
-        this.setChatList(charList);
+        // Set stringLength
+        if (stringLength < 0) {
+            throw new IllegalArgumentException("Invalid stringLength: " + stringLength);
+        }
+        this.stringLength = stringLength;
+
+        // Set charList
+        if (charList == null || charList.size() == 0) {
+            throw new IllegalArgumentException("charList cannot be null or empty");
+        }
+        if (false == charList.stream().map(x->(x!=null&&x.length()==1)).reduce(true, (x,y)->(x&&y)).booleanValue()) {
+            throw new IllegalArgumentException("Invalid charList");
+        }
+        this.charList = charList;
     }
 
     @Override
@@ -92,25 +112,8 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         return charList;
     }
 
-    private void setChatList(List<String> charList) {
-        if (charList == null || charList.size() == 0) {
-            throw new IllegalArgumentException("charList cannot be null or empty");
-        }
-        if (false == charList.stream().map(x->(x!=null&&x.length()==1)).reduce(true, (x,y)->(x&&y)).booleanValue()) {
-            throw new IllegalArgumentException("Invalid charList");
-        }
-        this.charList = charList;
-    }
-
     public int getStringLength() {
         return stringLength;
-    }
-
-    private void setStringLength(int stringLength) {
-        if (stringLength < 0) {
-            throw new IllegalArgumentException("Invalid stringLength: " + stringLength);
-        }
-        this.stringLength = stringLength;
     }
 
     public String getPrevInstance() {

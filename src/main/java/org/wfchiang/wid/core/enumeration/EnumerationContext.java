@@ -1,8 +1,10 @@
 package org.wfchiang.wid.core.enumeration;
 
+import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.parser.util.ResolverFully;
 import org.json.JSONObject;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.util.WidShortHands;
@@ -13,17 +15,42 @@ import java.util.Set;
 
 public class EnumerationContext {
 
+    private final OpenAPI openAPI;
+    private final ResolverFully resolverFully;
     private StringEnumerator stringEnumerator;
     private ObjectEnumerator objectEnumerator;
     private EnumerationHistory enumerationHistory;
 
     public EnumerationContext () {
+        this.openAPI = null;
+        this.resolverFully = new ResolverFully();
+        init();
+    }
+
+    public EnumerationContext (OpenAPI openAPI) {
+        this.openAPI = openAPI;
+        this.resolverFully = new ResolverFully();
+        if (this.openAPI != null) {
+            this.resolverFully.resolveFully(this.openAPI);
+        }
+        init();
+    }
+
+    private void init () {
         this.stringEnumerator = new DefaultStringEnumerator();
         this.objectEnumerator = new DefaultObjectEnumerator();
         this.enumerationHistory = new EnumerationHistory();
     }
 
     public Set<Object> enumerate (Schema schema) {
+        Schema fullyResolvedSchema =  schema;
+        if (this.openAPI != null) {
+            fullyResolvedSchema = this.resolverFully.resolveSchema(schema);
+        }
+        return this.enumerateWithFullyResolvedSchema(fullyResolvedSchema);
+    }
+
+    public Set<Object> enumerateWithFullyResolvedSchema (Schema schema) {
         Set<Object> enuObjects = new HashSet<>();
 
         if (schema instanceof StringSchema) {
