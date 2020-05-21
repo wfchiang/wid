@@ -14,6 +14,11 @@ public class DefaultFixedLengthStringEnumerator implements StringEnumerator {
         this.setStringLength(stringLength);
     }
 
+    public DefaultFixedLengthStringEnumerator (int stringLength, String defaultChar) {
+        this(stringLength);
+        this.setDefaultChar(defaultChar);
+    }
+
     @Override
     public Set<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
         String enuString = "";
