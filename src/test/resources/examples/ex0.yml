@@ -38,3 +38,20 @@ components:
           example: strValue1
       required:
       - strKey0
+    Object1:
+      type: object
+      properties:
+        strKey0:
+          type: string
+          description: Sample string entry
+          minLength: 2
+          maxLength: 4
+        objKey0:
+          type: object
+          description: Sample object entry
+          properties:
+            strKey00:
+              type: string
+              description: Sample string entry
+        objKey1:
+          $ref: '#/components/schemas/Object0'
