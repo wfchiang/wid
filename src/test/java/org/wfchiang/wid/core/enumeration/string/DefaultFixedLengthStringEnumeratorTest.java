@@ -1,8 +1,10 @@
-package org.wfchiang.wid.core.enumeration;
+package org.wfchiang.wid.core.enumeration.string;
 
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Test;
+import org.wfchiang.wid.core.enumeration.EnumerationContext;
+import org.wfchiang.wid.core.enumeration.string.DefaultFixedLengthStringEnumerator;
 
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class DefaultFixedLengthStringEnumeratorTest {
         Assert.assertEquals(1, enuSet.size());
         Assert.assertEquals("", enuSet.iterator().next());
 
-        defaultFixedLengthStringEnumerator.setDefaultChar("J");
+        defaultFixedLengthStringEnumerator.setDefaultChar('J');
         defaultFixedLengthStringEnumerator.setStringLength(2);
         enuSet = defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
         Assert.assertNotNull(enuSet);
@@ -30,17 +32,5 @@ public class DefaultFixedLengthStringEnumeratorTest {
     @Test(expected = IllegalArgumentException.class)
     public void enumerate_e0 () {
         new DefaultFixedLengthStringEnumerator(-1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void enumerate_e1 () {
-        DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator = new DefaultFixedLengthStringEnumerator(2);
-        defaultFixedLengthStringEnumerator.setDefaultChar(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void enumerate_e2 () {
-        DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator = new DefaultFixedLengthStringEnumerator(2);
-        defaultFixedLengthStringEnumerator.setDefaultChar("JJ");
     }
 }

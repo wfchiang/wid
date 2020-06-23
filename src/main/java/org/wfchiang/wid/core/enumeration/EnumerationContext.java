@@ -6,6 +6,10 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.parser.util.ResolverFully;
 import org.json.JSONObject;
+import org.wfchiang.wid.core.enumeration.object.DefaultObjectEnumerator;
+import org.wfchiang.wid.core.enumeration.object.ObjectEnumerator;
+import org.wfchiang.wid.core.enumeration.string.DefaultStringEnumerator;
+import org.wfchiang.wid.core.enumeration.string.StringEnumerator;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.util.WidShortHands;
 

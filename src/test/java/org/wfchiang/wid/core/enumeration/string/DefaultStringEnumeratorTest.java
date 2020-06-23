@@ -1,9 +1,12 @@
-package org.wfchiang.wid.core.enumeration;
+package org.wfchiang.wid.core.enumeration.string;
 
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wfchiang.wid.core.enumeration.EnumerationContext;
+import org.wfchiang.wid.core.enumeration.EnumerationHistory;
+import org.wfchiang.wid.core.enumeration.string.DefaultStringEnumerator;
 
 import java.util.Set;
 
