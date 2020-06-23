@@ -1,8 +1,9 @@
-package org.wfchiang.wid.core.enumeration;
+package org.wfchiang.wid.core.enumeration.string;
 
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Test;
+import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import org.wfchiang.wid.core.enumeration.string.DefaultRangedLengthStringEnumerator;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package org.wfchiang.wid.core.enumeration;
+package org.wfchiang.wid.core.enumeration.object;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ObjectSchema;
@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.wfchiang.wid.core.TestingUtils;
+import org.wfchiang.wid.core.enumeration.EnumerationContext;
+import org.wfchiang.wid.core.enumeration.EnumerationHistory;
 import org.wfchiang.wid.core.enumeration.string.DefaultFixedLengthStringEnumerator;
 
 import java.io.IOException;
