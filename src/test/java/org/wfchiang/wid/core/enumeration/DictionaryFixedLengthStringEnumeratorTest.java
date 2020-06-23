@@ -4,8 +4,8 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wfchiang.wid.core.enumeration.string.DictionaryFixedLengthStringEnumerator;
 import org.wfchiang.wid.core.exception.WidEnumerationException;
-import org.wfchiang.wid.core.exception.WidValidationException;
 
 import java.util.Arrays;
 import java.util.List;

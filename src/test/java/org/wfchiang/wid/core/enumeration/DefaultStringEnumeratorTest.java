@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wfchiang.wid.core.enumeration.string.DefaultStringEnumerator;
 
 import java.util.Set;
 

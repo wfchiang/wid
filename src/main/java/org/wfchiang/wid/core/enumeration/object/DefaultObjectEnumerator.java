@@ -1,8 +1,9 @@
-package org.wfchiang.wid.core.enumeration;
+package org.wfchiang.wid.core.enumeration.object;
 
 import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import org.json.JSONObject;
+import org.wfchiang.wid.core.enumeration.EnumerationContext;
 
 import java.util.HashSet;
 import java.util.Map;
