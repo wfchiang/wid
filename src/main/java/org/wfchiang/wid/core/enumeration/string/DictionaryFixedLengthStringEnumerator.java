@@ -94,7 +94,7 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         return defaultFixedLengthStringEnumerator.enumerate(new StringSchema(), new EnumerationContext()).iterator().next();
     }
 
-    private char increaseChar (char c) {
+    public char increaseChar (char c) {
         if (!this.charList.contains(c)) {
             throw new WidEnumerationException("Character " + c + " is not in the character-list");
         }

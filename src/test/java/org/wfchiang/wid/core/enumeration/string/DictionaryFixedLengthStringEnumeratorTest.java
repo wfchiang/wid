@@ -5,9 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
-import org.wfchiang.wid.core.enumeration.string.DictionaryFixedLengthStringEnumerator;
 import org.wfchiang.wid.core.exception.WidEnumerationException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,6 +58,30 @@ public class DictionaryFixedLengthStringEnumeratorTest {
         Assert.assertTrue(charList.contains('a'));
         Assert.assertTrue(charList.contains('b'));
         Assert.assertTrue(charList.contains('c'));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void DictionaryFixedLengthStringEnumerator_e0 () {
+        new DictionaryFixedLengthStringEnumerator(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void DictionaryFixedLengthStringEnumerator_e1 () {
+        new DictionaryFixedLengthStringEnumerator(-1, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void DictionaryFixedLengthStringEnumerator_e2 () {
+        new DictionaryFixedLengthStringEnumerator(1, new ArrayList<Character>());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void DictionaryFixedLengthStringEnumerator_e3 () {
+        List<Character> badCharList = new ArrayList<>();
+        badCharList.add('a');
+        badCharList.add(null);
+        badCharList.add('c');
+        new DictionaryFixedLengthStringEnumerator(1, badCharList);
     }
 
     @Test
@@ -132,5 +156,38 @@ public class DictionaryFixedLengthStringEnumeratorTest {
         defaultEnumerator.setPrevInstance("998");
         Assert.assertEquals("999", defaultEnumerator.enumerate(stringSchema, enumerationContext).iterator().next());
         Assert.assertNull(defaultEnumerator.enumerate(stringSchema, enumerationContext));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void enumerate_e0 () {
+        defaultEnumerator.enumerate(null, new EnumerationContext());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void enumerate_e1 () {
+        defaultEnumerator.enumerate(stringSchema, null);
+    }
+
+    @Test
+    public void enumerate_e2 () {
+        DictionaryFixedLengthStringEnumerator dictionaryFixedLengthStringEnumerator =
+                new DictionaryFixedLengthStringEnumerator(0);
+        Assert.assertEquals("", dictionaryFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext).iterator().next());
+    }
+
+    @Test
+    public void increaseChar_0 () {
+        DictionaryFixedLengthStringEnumerator dictionaryFixedLengthStringEnumerator =
+                new DictionaryFixedLengthStringEnumerator(2, abcList);
+        Assert.assertEquals('b', dictionaryFixedLengthStringEnumerator.increaseChar('a'));
+        Assert.assertEquals('c', dictionaryFixedLengthStringEnumerator.increaseChar('b'));
+        Assert.assertEquals('a', dictionaryFixedLengthStringEnumerator.increaseChar('c'));
+    }
+
+    @Test(expected = WidEnumerationException.class)
+    public void increaseChar_e0 () {
+        DictionaryFixedLengthStringEnumerator dictionaryFixedLengthStringEnumerator =
+                new DictionaryFixedLengthStringEnumerator(2, abcList);
+        dictionaryFixedLengthStringEnumerator.increaseChar('x');
     }
 }
