@@ -82,7 +82,7 @@ public class DefaultObjectEnumeratorTest {
 
         EnumerationContext enumerationContext = new EnumerationContext(openAPI);
         DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator
-                = new DefaultFixedLengthStringEnumerator(2, "J");
+                = new DefaultFixedLengthStringEnumerator(2, 'J');
         enumerationContext.setStringEnumerator(defaultFixedLengthStringEnumerator);
 
         Set<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema1, enumerationContext);

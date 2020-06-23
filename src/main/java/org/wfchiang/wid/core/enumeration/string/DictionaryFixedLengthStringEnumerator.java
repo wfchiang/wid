@@ -8,8 +8,8 @@ import java.util.*;
 
 public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
 
-    private final List<String> defaultCharList = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private final List<String> charList;
+    private final List<Character> defaultCharList = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    private final List<Character> charList;
     private final int stringLength;
     private String prevInstance = null;
 
@@ -24,7 +24,7 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         this.charList = this.defaultCharList;
     }
 
-    public DictionaryFixedLengthStringEnumerator (int stringLength, List<String> charList) {
+    public DictionaryFixedLengthStringEnumerator (int stringLength, List<Character> charList) {
         // Set stringLength
         if (stringLength < 0) {
             throw new IllegalArgumentException("Invalid stringLength: " + stringLength);
@@ -35,7 +35,7 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         if (charList == null || charList.size() == 0) {
             throw new IllegalArgumentException("charList cannot be null or empty");
         }
-        if (false == charList.stream().map(x->(x!=null&&x.length()==1)).reduce(true, (x,y)->(x&&y)).booleanValue()) {
+        if (false == charList.stream().map(x->x!=null).reduce(true, (x,y)->(x&&y)).booleanValue()) {
             throw new IllegalArgumentException("Invalid charList");
         }
         this.charList = charList;
@@ -56,9 +56,9 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
             else {
                 nextInstance = new String(this.prevInstance);
                 for (int i = this.stringLength-1 ; i >= 0 ; i--) {
-                    String nextChar = this.increaseChar(nextInstance.substring(i,i+1));
+                    char nextChar = this.increaseChar(nextInstance.charAt(i));
                     nextInstance = nextInstance.substring(0, i) + nextChar + nextInstance.substring(i+1);
-                    if (!nextChar.equals(this.charList.get(0))) {
+                    if (nextChar != this.charList.get(0)) {
                         break;
                     }
                 }
@@ -75,11 +75,11 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         if (s == null || s.length() != this.stringLength) {
             return false;
         }
-        List<String> cList = new ArrayList();
-        for (Character c : s.toCharArray()) {
-            cList.add(String.valueOf(c));
+        List<Character> cList = new ArrayList();
+        for (char c : s.toCharArray()) {
+            cList.add(c);
         }
-        return cList.stream().map(x->this.charList.contains(String.valueOf(x))).reduce(true, (x,y)->(x&&y));
+        return cList.stream().map(x->this.charList.contains(x)).reduce(true, (x,y)->(x&&y));
     }
 
     public String getFirstInstance () {
@@ -94,7 +94,7 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         return defaultFixedLengthStringEnumerator.enumerate(new StringSchema(), new EnumerationContext()).iterator().next();
     }
 
-    private String increaseChar (String c) {
+    private char increaseChar (char c) {
         if (!this.charList.contains(c)) {
             throw new WidEnumerationException("Character " + c + " is not in the character-list");
         }
@@ -109,7 +109,7 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
         return (!this.getLastInstance().equals(this.prevInstance));
     }
 
-    public List<String> getChatList() {
+    public List<Character> getChatList() {
         return charList;
     }
 

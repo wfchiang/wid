@@ -15,7 +15,7 @@ public class DictionaryFixedLengthStringEnumeratorTest {
 
     StringSchema stringSchema;
     EnumerationContext enumerationContext;
-    List<String> abcList;
+    List<Character> abcList;
 
     DictionaryFixedLengthStringEnumerator defaultEnumerator;
     DictionaryFixedLengthStringEnumerator abcEnumerator;
@@ -24,7 +24,7 @@ public class DictionaryFixedLengthStringEnumeratorTest {
     public void init () {
         this.stringSchema = new StringSchema();
         this.enumerationContext = new EnumerationContext();
-        abcList = Arrays.asList("a", "b", "c");
+        abcList = Arrays.asList('a', 'b', 'c');
         defaultEnumerator = new DictionaryFixedLengthStringEnumerator(3);
         abcEnumerator = new DictionaryFixedLengthStringEnumerator(3, abcList);
     }
@@ -33,31 +33,31 @@ public class DictionaryFixedLengthStringEnumeratorTest {
     public void DictionaryFixedLengthStringEnumerator_0 () {
         Assert.assertEquals(3, defaultEnumerator.getStringLength());
 
-        List<String> charList = defaultEnumerator.getChatList();
+        List<Character> charList = defaultEnumerator.getChatList();
         Assert.assertNotNull(charList);
         Assert.assertEquals(10, charList.size());
-        Assert.assertTrue(charList.contains("0"));
-        Assert.assertTrue(charList.contains("1"));
-        Assert.assertTrue(charList.contains("2"));
-        Assert.assertTrue(charList.contains("3"));
-        Assert.assertTrue(charList.contains("4"));
-        Assert.assertTrue(charList.contains("5"));
-        Assert.assertTrue(charList.contains("6"));
-        Assert.assertTrue(charList.contains("7"));
-        Assert.assertTrue(charList.contains("8"));
-        Assert.assertTrue(charList.contains("9"));
+        Assert.assertTrue(charList.contains('0'));
+        Assert.assertTrue(charList.contains('1'));
+        Assert.assertTrue(charList.contains('2'));
+        Assert.assertTrue(charList.contains('3'));
+        Assert.assertTrue(charList.contains('4'));
+        Assert.assertTrue(charList.contains('5'));
+        Assert.assertTrue(charList.contains('6'));
+        Assert.assertTrue(charList.contains('7'));
+        Assert.assertTrue(charList.contains('8'));
+        Assert.assertTrue(charList.contains('9'));
     }
 
     @Test
     public void DictionaryFixedLengthStringEnumerator_1 () {
         Assert.assertEquals(3, abcEnumerator.getStringLength());
 
-        List<String> charList = abcEnumerator.getChatList();
+        List<Character> charList = abcEnumerator.getChatList();
         Assert.assertNotNull(charList);
         Assert.assertEquals(3, charList.size());
-        Assert.assertTrue(charList.contains("a"));
-        Assert.assertTrue(charList.contains("b"));
-        Assert.assertTrue(charList.contains("c"));
+        Assert.assertTrue(charList.contains('a'));
+        Assert.assertTrue(charList.contains('b'));
+        Assert.assertTrue(charList.contains('c'));
     }
 
     @Test

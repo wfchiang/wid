@@ -12,7 +12,7 @@ public class DefaultRangedLengthStringEnumerator implements StringEnumerator {
     private int minLength = 0;
     private int maxLength = 1;
 
-    public DefaultRangedLengthStringEnumerator(String defaultChar, int minLength, int maxLength) {
+    public DefaultRangedLengthStringEnumerator(char defaultChar, int minLength, int maxLength) {
         this.defaultFixedLengthStringEnumerator = new DefaultFixedLengthStringEnumerator(0);
         this.setDefaultChar(defaultChar);
         this.setMaxLength(maxLength);
@@ -30,11 +30,11 @@ public class DefaultRangedLengthStringEnumerator implements StringEnumerator {
         return enuSet;
     }
 
-    public String getDefaultChar() {
+    public char getDefaultChar() {
         return this.defaultFixedLengthStringEnumerator.getDefaultChar();
     }
 
-    public void setDefaultChar(String defaultChar) {
+    public void setDefaultChar(char defaultChar) {
         this.defaultFixedLengthStringEnumerator.setDefaultChar(defaultChar);
     }
 

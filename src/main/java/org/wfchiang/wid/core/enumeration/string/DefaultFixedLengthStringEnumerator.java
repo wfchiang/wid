@@ -8,14 +8,14 @@ import java.util.Set;
 
 public class DefaultFixedLengthStringEnumerator implements StringEnumerator {
 
-    private String defaultChar = " ";
+    private char defaultChar = ' ';
     private int stringLength = 0;
 
     public DefaultFixedLengthStringEnumerator (int stringLength) {
         this.setStringLength(stringLength);
     }
 
-    public DefaultFixedLengthStringEnumerator (int stringLength, String defaultChar) {
+    public DefaultFixedLengthStringEnumerator (int stringLength, char defaultChar) {
         this(stringLength);
         this.setDefaultChar(defaultChar);
     }
@@ -31,14 +31,11 @@ public class DefaultFixedLengthStringEnumerator implements StringEnumerator {
         return enuSet;
     }
 
-    public String getDefaultChar() {
+    public char getDefaultChar() {
         return defaultChar;
     }
 
-    public void setDefaultChar(String defaultChar) {
-        if (defaultChar == null || defaultChar.length() != 1) {
-            throw new IllegalArgumentException("Invalid default char: " + defaultChar);
-        }
+    public void setDefaultChar(char defaultChar) {
         this.defaultChar = defaultChar;
     }
 
