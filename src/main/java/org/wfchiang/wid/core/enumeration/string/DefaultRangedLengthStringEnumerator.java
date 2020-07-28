@@ -3,8 +3,8 @@ package org.wfchiang.wid.core.enumeration.string;
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 public class DefaultRangedLengthStringEnumerator implements StringEnumerator {
 
@@ -20,11 +20,11 @@ public class DefaultRangedLengthStringEnumerator implements StringEnumerator {
     }
 
     @Override
-    public Set<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
-        Set<String> enuSet = new HashSet<>();
+    public Collection<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
+        Collection<String> enuSet = new HashSet<>();
         for (int i = this.minLength ; i < this.maxLength ; i++) {
             this.defaultFixedLengthStringEnumerator.setStringLength(i);
-            Set<String> newSet = this.defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
+            Collection<String> newSet = this.defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
             enuSet.addAll(newSet);
         }
         return enuSet;

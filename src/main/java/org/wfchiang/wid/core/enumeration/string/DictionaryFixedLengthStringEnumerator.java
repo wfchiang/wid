@@ -42,12 +42,12 @@ public class DictionaryFixedLengthStringEnumerator implements StringEnumerator {
     }
 
     @Override
-    public Set<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
+    public Collection<String> enumerate(StringSchema stringSchema, EnumerationContext enumerationContext) {
         if (stringSchema == null || enumerationContext == null) {
             throw new IllegalArgumentException("Invalid stringSchema or invalid enumerationContext");
         }
 
-        Set<String> enuSet = null;
+        Collection<String> enuSet = null;
         if (this.hasNext()) {
             String nextInstance;
             if (this.prevInstance == null) {

@@ -13,9 +13,9 @@ import org.wfchiang.wid.core.enumeration.string.StringEnumerator;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.util.WidShortHands;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 public class EnumerationContext {
 
@@ -46,7 +46,7 @@ public class EnumerationContext {
         this.enumerationHistory = new EnumerationHistory();
     }
 
-    public Set<Object> enumerate (Schema schema) {
+    public Collection<Object> enumerate (Schema schema) {
         Schema fullyResolvedSchema =  schema;
         if (this.openAPI != null) {
             fullyResolvedSchema = this.resolverFully.resolveSchema(schema);
@@ -54,18 +54,18 @@ public class EnumerationContext {
         return this.enumerateWithFullyResolvedSchema(fullyResolvedSchema);
     }
 
-    public Set<Object> enumerateWithFullyResolvedSchema (Schema schema) {
-        Set<Object> enuObjects = new HashSet<>();
+    public Collection<Object> enumerateWithFullyResolvedSchema (Schema schema) {
+        Collection<Object> enuObjects = new HashSet<>();
 
         if (schema instanceof StringSchema) {
-            Set<String> enuStrings = this.stringEnumerator.enumerate((StringSchema)schema, this);
+            Collection<String> enuStrings = this.stringEnumerator.enumerate((StringSchema)schema, this);
             Iterator<String> strIter = enuStrings.iterator();
             while(strIter.hasNext()) {
                 enuObjects.add(strIter.next());
             }
         }
         else if (schema instanceof ObjectSchema) {
-            Set<JSONObject> enuJSONs = this.objectEnumerator.enumerate((ObjectSchema)schema, this);
+            Collection<JSONObject> enuJSONs = this.objectEnumerator.enumerate((ObjectSchema)schema, this);
             Iterator<JSONObject> jsonIter = enuJSONs.iterator();
             while(jsonIter.hasNext()) {
                 enuObjects.add(jsonIter.next());

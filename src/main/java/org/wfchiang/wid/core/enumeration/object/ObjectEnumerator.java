@@ -4,8 +4,8 @@ import io.swagger.v3.oas.models.media.ObjectSchema;
 import org.json.JSONObject;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 
-import java.util.Set;
+import java.util.Collection;
 
 public interface ObjectEnumerator {
-    public Set<JSONObject> enumerate (ObjectSchema objectSchema, EnumerationContext enumerationContext);
+    public Collection<JSONObject> enumerate (ObjectSchema objectSchema, EnumerationContext enumerationContext);
 }

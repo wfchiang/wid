@@ -10,8 +10,8 @@ import org.wfchiang.wid.core.TestingUtils;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 public class DefaultValidStringEnumeratorTest {
     @Test
@@ -27,7 +27,7 @@ public class DefaultValidStringEnumeratorTest {
         EnumerationContext enumerationContext = new EnumerationContext(openAPI);
         DefaultValidStringEnumerator defaultValidStringEnumerator = new DefaultValidStringEnumerator();
 
-        Set<String> enuSet;
+        Collection<String> enuSet;
 
         enuSet = defaultValidStringEnumerator.enumerate(schemaO0S1, enumerationContext);
         Assert.assertEquals(1, enuSet.size());

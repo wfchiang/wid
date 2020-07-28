@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import org.wfchiang.wid.core.enumeration.string.DefaultRangedLengthStringEnumerator;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class DefaultRangedLengthStringEnumeratorTest {
 
@@ -14,7 +14,7 @@ public class DefaultRangedLengthStringEnumeratorTest {
     public void enumerate_0 () {
         DefaultRangedLengthStringEnumerator defaultRangedLengthStringEnumerator =
                 new DefaultRangedLengthStringEnumerator('J', 2, 5);
-        Set<String> enuSet = defaultRangedLengthStringEnumerator.enumerate(new StringSchema(), new EnumerationContext());
+        Collection<String> enuSet = defaultRangedLengthStringEnumerator.enumerate(new StringSchema(), new EnumerationContext());
         Assert.assertNotNull(enuSet);
         Assert.assertEquals(3, enuSet.size());
         Assert.assertFalse(enuSet.contains("J"));

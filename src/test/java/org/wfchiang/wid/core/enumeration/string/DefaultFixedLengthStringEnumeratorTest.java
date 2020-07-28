@@ -4,9 +4,8 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Test;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
-import org.wfchiang.wid.core.enumeration.string.DefaultFixedLengthStringEnumerator;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class DefaultFixedLengthStringEnumeratorTest {
 
@@ -16,7 +15,7 @@ public class DefaultFixedLengthStringEnumeratorTest {
         StringSchema stringSchema = new StringSchema();
 
         DefaultFixedLengthStringEnumerator defaultFixedLengthStringEnumerator = new DefaultFixedLengthStringEnumerator(0);
-        Set<String> enuSet = defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
+        Collection<String> enuSet = defaultFixedLengthStringEnumerator.enumerate(stringSchema, enumerationContext);
         Assert.assertNotNull(enuSet);
         Assert.assertEquals(1, enuSet.size());
         Assert.assertEquals("", enuSet.iterator().next());

@@ -11,8 +11,8 @@ import org.junit.Test;
 import org.wfchiang.wid.core.TestingUtils;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 public class EnumerationContextTest {
 
@@ -33,7 +33,7 @@ public class EnumerationContextTest {
 
         ObjectSchema objectSchema0 = TestingUtils.getObjectSchemaFromDefinitions("Object0", componentSchemas);
 
-        Set<Object> enuObjects = this.enumerationContext.enumerate(objectSchema0);
+        Collection<Object> enuObjects = this.enumerationContext.enumerate(objectSchema0);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(1, enuObjects.size());
 

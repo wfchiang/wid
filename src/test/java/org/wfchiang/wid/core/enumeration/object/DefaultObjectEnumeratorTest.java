@@ -14,9 +14,9 @@ import org.wfchiang.wid.core.enumeration.EnumerationHistory;
 import org.wfchiang.wid.core.enumeration.string.DefaultFixedLengthStringEnumerator;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class DefaultObjectEnumeratorTest {
 
@@ -38,7 +38,7 @@ public class DefaultObjectEnumeratorTest {
         ObjectSchema objectSchema0 = TestingUtils.getObjectSchemaFromDefinitions("Object0", componentSchemas);
 
         DefaultObjectEnumerator defaultObjectEnumerator = new DefaultObjectEnumerator();
-        Set<JSONObject> enuObjects = defaultObjectEnumerator.enumerate(objectSchema0, this.enumerationContext);
+        Collection<JSONObject> enuObjects = defaultObjectEnumerator.enumerate(objectSchema0, this.enumerationContext);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(1, enuObjects.size());
 
@@ -55,7 +55,7 @@ public class DefaultObjectEnumeratorTest {
         ObjectSchema objectSchema = new ObjectSchema();
         Assert.assertNull(objectSchema.getProperties());
 
-        Set<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema, this.enumerationContext);
+        Collection<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema, this.enumerationContext);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(0, enuObjects.size());
     }
@@ -66,7 +66,7 @@ public class DefaultObjectEnumeratorTest {
         Map<String, Schema> properties = new HashMap<>();
         objectSchema.setProperties(properties);
 
-        Set<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema, this.enumerationContext);
+        Collection<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema, this.enumerationContext);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(1, enuObjects.size());
 
@@ -85,7 +85,7 @@ public class DefaultObjectEnumeratorTest {
                 = new DefaultFixedLengthStringEnumerator(2, 'J');
         enumerationContext.setStringEnumerator(defaultFixedLengthStringEnumerator);
 
-        Set<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema1, enumerationContext);
+        Collection<JSONObject> enuObjects = new DefaultObjectEnumerator().enumerate(objectSchema1, enumerationContext);
         Assert.assertNotNull(enuObjects);
         Assert.assertEquals(1, enuObjects.size());
 

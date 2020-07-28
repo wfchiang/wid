@@ -6,9 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import org.wfchiang.wid.core.enumeration.EnumerationHistory;
-import org.wfchiang.wid.core.enumeration.string.DefaultStringEnumerator;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class DefaultStringEnumeratorTest {
 
@@ -26,7 +25,7 @@ public class DefaultStringEnumeratorTest {
         StringSchema stringSchema = new StringSchema();
 
         StringEnumerator stringEnumerator = new DefaultStringEnumerator();
-        Set<String> enuStringSet = stringEnumerator.enumerate(stringSchema, this.enumerationContext);
+        Collection<String> enuStringSet = stringEnumerator.enumerate(stringSchema, this.enumerationContext);
         Assert.assertNotNull(enuStringSet);
         Assert.assertEquals(1, enuStringSet.size());
 
