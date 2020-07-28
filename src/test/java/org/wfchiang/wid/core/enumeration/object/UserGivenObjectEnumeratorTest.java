@@ -22,7 +22,15 @@ public class UserGivenObjectEnumeratorTest {
     }
 
     @Test
-    public void enumerate_0 () throws JSONException {
+    public void enumerate_0 () {
+        UserGivenObjectEnumerator userGivenObjectEnumerator =
+                new UserGivenObjectEnumerator();
+
+        Assert.assertEquals(0, userGivenObjectEnumerator.enumerate(null, null).size());
+    }
+
+    @Test
+    public void enumerate_1 () throws JSONException {
         UserGivenObjectEnumerator userGivenObjectEnumerator =
                 new UserGivenObjectEnumerator();
 
