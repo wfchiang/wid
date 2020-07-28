@@ -10,12 +10,11 @@ import org.wfchiang.wid.core.enumeration.object.DefaultObjectEnumerator;
 import org.wfchiang.wid.core.enumeration.object.ObjectEnumerator;
 import org.wfchiang.wid.core.enumeration.string.DefaultStringEnumerator;
 import org.wfchiang.wid.core.enumeration.string.StringEnumerator;
+import org.wfchiang.wid.core.exception.WidSchemaException;
 import org.wfchiang.wid.core.exception.WidUnsupportedClassException;
 import org.wfchiang.wid.core.util.WidShortHands;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 public class EnumerationContext {
 
@@ -46,11 +45,36 @@ public class EnumerationContext {
         this.enumerationHistory = new EnumerationHistory();
     }
 
-    public Collection<Object> enumerate (Schema schema) {
-        Schema fullyResolvedSchema =  schema;
-        if (this.openAPI != null) {
-            fullyResolvedSchema = this.resolverFully.resolveSchema(schema);
+    public Schema findSchemaByKey (Schema rootSchema, List<String> key) {
+        if (rootSchema == null) {
+            throw new IllegalArgumentException("rootSchema cannot be null");
         }
+        if (key == null) {
+            throw new IllegalArgumentException("key cannot be null");
+        }
+
+        if (key.size() == 0) {
+            return rootSchema;
+        }
+
+        if (!(rootSchema instanceof ObjectSchema)) {
+            throw new WidSchemaException("rootSchema needs to be an ObjectSchema");
+        }
+
+        ObjectSchema fullyResolvedObjectSchema = (this.openAPI != null ? (ObjectSchema) this.resolverFully.resolveSchema(rootSchema) : (ObjectSchema) rootSchema);
+
+        String keyElement = key.get(0);
+
+        Map<String, Schema> properties = fullyResolvedObjectSchema.getProperties();
+        if (!properties.containsKey(keyElement)) {
+            throw new WidSchemaException("Invalid key element \"" + keyElement + "\"");
+        }
+
+        return this.findSchemaByKey(properties.get(keyElement), key.subList(1, key.size()));
+    }
+
+    public Collection<Object> enumerate (Schema schema) {
+        Schema fullyResolvedSchema = (this.openAPI != null ? this.resolverFully.resolveSchema(schema) : schema);
         return this.enumerateWithFullyResolvedSchema(fullyResolvedSchema);
     }
 
