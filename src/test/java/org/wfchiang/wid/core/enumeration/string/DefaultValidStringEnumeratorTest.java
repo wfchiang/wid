@@ -6,7 +6,7 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wfchiang.wid.core.TestingUtils;
+import org.wfchiang.wid.TestingUtils;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 
 import java.io.IOException;

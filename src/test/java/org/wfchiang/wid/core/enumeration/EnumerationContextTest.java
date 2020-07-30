@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.wfchiang.wid.core.TestingUtils;
+import org.wfchiang.wid.TestingUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;

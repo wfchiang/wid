@@ -6,17 +6,20 @@ import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class DefaultFixedLengthStringEnumerator implements StringEnumerator {
+public class DefaultFixedLengthStringEnumerator extends FixedLengthStringEnumerator {
 
     private char defaultChar = ' ';
-    private int stringLength = 0;
+
+    public DefaultFixedLengthStringEnumerator () {
+        super();
+    }
 
     public DefaultFixedLengthStringEnumerator (int stringLength) {
-        this.setStringLength(stringLength);
+        super(stringLength);
     }
 
     public DefaultFixedLengthStringEnumerator (int stringLength, char defaultChar) {
-        this(stringLength);
+        super(stringLength);
         this.setDefaultChar(defaultChar);
     }
 
@@ -37,16 +40,5 @@ public class DefaultFixedLengthStringEnumerator implements StringEnumerator {
 
     public void setDefaultChar(char defaultChar) {
         this.defaultChar = defaultChar;
-    }
-
-    public int getStringLength() {
-        return stringLength;
-    }
-
-    public void setStringLength(int stringLength) {
-        if (stringLength < 0) {
-            throw new IllegalArgumentException("Invalid string length: " + stringLength);
-        }
-        this.stringLength = stringLength;
     }
 }

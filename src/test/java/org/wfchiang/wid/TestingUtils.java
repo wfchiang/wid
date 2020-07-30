@@ -1,4 +1,4 @@
-package org.wfchiang.wid.core;
+package org.wfchiang.wid;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ObjectSchema;

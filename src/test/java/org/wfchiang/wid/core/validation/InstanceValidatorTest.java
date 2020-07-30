@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.wfchiang.wid.core.TestingUtils;
+import org.wfchiang.wid.TestingUtils;
 import org.wfchiang.wid.core.enumeration.EnumerationContext;
 import org.wfchiang.wid.core.enumeration.EnumerationHistory;
 import org.wfchiang.wid.core.exception.WidValidationException;
